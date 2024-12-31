@@ -48,8 +48,9 @@ SRC_PRINTF = \
 	ft_libft/ft_printf/ft_printf.c
 
 SRC_PROGRM = \
-	proper_stack.c\
-	ft_stack.c
+	ft_stack.c\
+	ft_helper.c\
+	push_swap.c
 
 OBJ_LIBFTA = $(SRC_LIBFTA:.c=.o)
 OBJ_PRINTF = $(SRC_PRINTF:.c=.o)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack.h .                                       :+:      :+:    :+:   */
+/*   ft_stack.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 08:53:33 by tsomacha          #+#    #+#             */
-/*   Updated: 2024/12/26 12:22:34 by tsomacha         ###   ########.fr       */
+/*   Updated: 2024/12/31 14:36:29 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <stdbool.h>
 
 # include "libft.h"
 
@@ -40,4 +41,6 @@ int		stk_pop(t_stack *stack);
 int		stk_peek(t_stack *stack);
 int		stk_isempty(t_stack *stack);
 
+bool	ft_isvalid(char *str);
+bool	ft_handle_argument(int argc, char **argv, t_stack *stack);
 #endif
