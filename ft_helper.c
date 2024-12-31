@@ -16,10 +16,8 @@
 bool	ft_isvalid(char *str)
 {
 	int	count;
-	int	sign;
 
 	count = 0;
-	sign = 0;
 	while (str[count] == ' ' || (str[count] >= 9 && str[count] <= 13))
 		count++;
 	if (str[count] == '-' || str[count] == '+')

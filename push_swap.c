@@ -4,9 +4,7 @@
 int main(int argc, char *argv[])
 {
 	t_stack stack;
-	int	count;
 
-	count = 1;
 	stk_init(&stack);
 	if(argc > 1)
 	{
@@ -18,5 +16,8 @@ int main(int argc, char *argv[])
 	}
 	else
 		ft_printf("Error!\n");
+
+	while(!stk_isempty(&stack))
+		stk_pop(&stack);
 	return (0);
 }
