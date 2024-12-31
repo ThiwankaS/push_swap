@@ -1,5 +1,5 @@
 CMD = cc
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address,undefined -I.
 
 TARGET_LIBFTA = libft.a
 TARGET_PRINTF = libftprintf.a
