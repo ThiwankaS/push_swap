@@ -17,18 +17,18 @@ void	stk_init(t_stack *stack)
 	stack->top = NULL;
 }
 
-int	stk_isempty(t_stack *stack)
+bool	stk_isempty(t_stack *stack)
 {
 	return (stack->top == NULL);
 }
 
-void	stk_push(t_stack *stack, int value)
+bool	stk_push(t_stack *stack, int value)
 {
 	t_list	*node;
 
 	node = (t_list *)malloc(sizeof(t_list));
 	if (!node)
-		return ;
+		return (false);
 	node->data = value;
 	node->next = stack->top;
 	node->previous = NULL;
@@ -37,6 +37,7 @@ void	stk_push(t_stack *stack, int value)
 		stack->top->previous = node;
 	}
 	stack->top = node;
+	return (true);
 }
 
 int	stk_pop(t_stack *stack)
