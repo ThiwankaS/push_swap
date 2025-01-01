@@ -35,7 +35,7 @@ typedef struct s_stack
 }	t_stack;
 
 void	stk_init(t_stack *stack);
-void	stk_push(t_stack *stack, int value);
+bool	stk_push(t_stack *stack, int value);
 
 int		stk_pop(t_stack *stack);
 int		stk_peek(t_stack *stack);
