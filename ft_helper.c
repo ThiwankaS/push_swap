@@ -116,5 +116,7 @@ bool	ft_handle_argument(int argc, char **argv, t_stack *stack)
 		return (false);
 	if (argc == 2)
 		free(result);
+	if (stk_contain_duplicates(stack))
+		return (false);
 	return (true);
 }

@@ -27,12 +27,12 @@ bool	stk_contain_duplicates(t_stack *stack)
 		while (start)
 		{
 			if (value == start->data)
-				return (false);
+				return (true);
 			start = start->next;
 		}
 		node = node->next;
 	}
-	return (true);
+	return (false);
 }
 
 bool	stk_is_sorted(t_stack *stack, bool ascending)
@@ -57,5 +57,12 @@ bool	stk_is_sorted(t_stack *stack, bool ascending)
 		current_node = next_node;
 		next_node = current_node->next;
 	}
+	return (true);
+}
+
+bool	stk_exit(t_stack *stack)
+{
+	while (!stk_isempty(stack))
+		stk_pop(stack);
 	return (true);
 }

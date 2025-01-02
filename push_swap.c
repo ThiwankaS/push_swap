@@ -38,21 +38,13 @@ int	main(int argc, char *argv[])
 		if (!ft_handle_argument(argc, argv, &stack))
 		{
 			ft_printf("Error!\n");
-			return (0);
+			return (stk_exit(&stack));
 		}
 	}
 	else
 		ft_printf("Error!\n");
 	stk_print(&stack);
-	if(!stk_contain_duplicates(&stack))
-	{
-		ft_printf("Duplicate values found!\n");
-	}
-	else
-	{
-		ft_printf("All good!\n");
-	}
-	if(!stk_is_sorted(&stack, false))
+	if (!stk_is_sorted(&stack, true))
 	{
 		ft_printf("stack ins not sorted!\n");
 	}

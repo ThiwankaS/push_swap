@@ -39,6 +39,7 @@ void	stk_init(t_stack *stack);
 int		stk_pop(t_stack *stack);
 int		stk_peek(t_stack *stack);
 
+bool	stk_exit(t_stack *stack);
 bool	stk_isempty(t_stack *stack);
 bool	stk_push(t_stack *stack, int value);
 bool	stk_contain_duplicates(t_stack *stack);
