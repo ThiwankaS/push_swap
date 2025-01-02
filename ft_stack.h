@@ -35,11 +35,14 @@ typedef struct s_stack
 }	t_stack;
 
 void	stk_init(t_stack *stack);
-bool	stk_push(t_stack *stack, int value);
 
 int		stk_pop(t_stack *stack);
 int		stk_peek(t_stack *stack);
+
 bool	stk_isempty(t_stack *stack);
+bool	stk_push(t_stack *stack, int value);
+bool	stk_contain_duplicates(t_stack *stack);
+bool	stk_is_sorted(t_stack *stack, bool ascending);
 
 bool	ft_isvalid(char *str);
 bool	ft_handle_argument(int argc, char **argv, t_stack *stack);

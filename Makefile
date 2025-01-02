@@ -50,6 +50,7 @@ SRC_PRINTF = \
 SRC_PROGRM = \
 	ft_stack.c\
 	ft_helper.c\
+	ft_stk_man.c\
 	push_swap.c
 
 OBJ_LIBFTA = $(SRC_LIBFTA:.c=.o)
