@@ -16,12 +16,15 @@
 void	stk_print(t_stack *stack)
 {
 	t_list	*temp;
+	int		count;
 
+	count = 0;
 	temp = stack->top;
 	while (temp)
 	{
-		ft_printf("item [%p] | data [%d]\n", temp, temp->data);
+		ft_printf("item [%d] : data [%d]\n", count, temp->data);
 		temp = temp->next;
+		count++;
 	}
 }
 
@@ -41,6 +44,22 @@ int	main(int argc, char *argv[])
 	else
 		ft_printf("Error!\n");
 	stk_print(&stack);
+	if(!stk_contain_duplicates(&stack))
+	{
+		ft_printf("Duplicate values found!\n");
+	}
+	else
+	{
+		ft_printf("All good!\n");
+	}
+	if(!stk_is_sorted(&stack, false))
+	{
+		ft_printf("stack ins not sorted!\n");
+	}
+	else
+	{
+		ft_printf("stack sorted!\n");
+	}
 	while (!stk_isempty(&stack))
 		stk_pop(&stack);
 	return (0);
