@@ -39,7 +39,7 @@ bool	stk_push(t_stack *stack, int value);
 
 int		stk_pop(t_stack *stack);
 int		stk_peek(t_stack *stack);
-int		stk_isempty(t_stack *stack);
+bool	stk_isempty(t_stack *stack);
 
 bool	ft_isvalid(char *str);
 bool	ft_handle_argument(int argc, char **argv, t_stack *stack);
