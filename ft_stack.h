@@ -38,6 +38,7 @@ void	stk_init(t_stack *stack);
 
 int		stk_pop(t_stack *stack);
 int		stk_peek(t_stack *stack);
+int		stk_get_size(t_stack *stack);
 
 bool	stk_exit(t_stack *stack);
 bool	stk_isempty(t_stack *stack);

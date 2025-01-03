@@ -66,3 +66,18 @@ bool	stk_exit(t_stack *stack)
 		stk_pop(stack);
 	return (true);
 }
+
+int	stk_get_size(t_stack *stack)
+{
+	int		count;
+	t_list	*node;
+
+	count = 0;
+	node = stack->top;
+	while (node)
+	{
+		count++;
+		node = node->next;
+	}
+	return (count);
+}

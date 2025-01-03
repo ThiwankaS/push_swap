@@ -52,6 +52,7 @@ int	main(int argc, char *argv[])
 	{
 		ft_printf("stack sorted!\n");
 	}
+	ft_printf("size : %d\n", stk_get_size(&stack));
 	while (!stk_isempty(&stack))
 		stk_pop(&stack);
 	return (0);
