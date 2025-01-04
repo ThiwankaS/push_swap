@@ -81,3 +81,32 @@ int	stk_get_size(t_stack *stack)
 	}
 	return (count);
 }
+
+int	stk_get_bottom(t_stack *stack)
+{
+	int		count;
+	t_list	*node_prev;
+	t_list	*node_next;
+
+	count = 0;
+	node_next = stack->top;
+	while (node_next)
+	{
+		count++;
+		node_prev = node_next;
+		node_next = node_next->next;
+	}
+	return (node_prev->data);
+}
+
+int	stk_get_next(t_stack *stack)
+{
+	t_list	*node;
+	t_list	*node_next;
+
+	node = stack->top;
+	node_next = node->next;
+	if(!node_next)
+		return (node->data);
+	return (node_next->data);
+}

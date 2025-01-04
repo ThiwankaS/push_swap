@@ -43,16 +43,22 @@ int	main(int argc, char *argv[])
 	}
 	else
 		ft_printf("Error!\n");
-	stk_print(&stack);
-	if (!stk_is_sorted(&stack, true))
+	if(!stk_isempty(&stack))
 	{
-		ft_printf("stack ins not sorted!\n");
+		stk_print(&stack);
+		if (!stk_is_sorted(&stack, true))
+		{
+			ft_printf("stack ins not sorted!\n");
+		}
+		else
+		{
+			ft_printf("stack sorted!\n");
+		}
+		ft_printf("size : %d\n", stk_get_size(&stack));
+		ft_printf("top : %d\n", stk_peek(&stack));
+		ft_printf("bottom : %d\n", stk_get_bottom(&stack));
+		ft_printf("next : %d\n", stk_get_next(&stack));
 	}
-	else
-	{
-		ft_printf("stack sorted!\n");
-	}
-	ft_printf("size : %d\n", stk_get_size(&stack));
 	while (!stk_isempty(&stack))
 		stk_pop(&stack);
 	return (0);
