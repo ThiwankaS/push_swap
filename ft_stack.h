@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 08:53:33 by tsomacha          #+#    #+#             */
-/*   Updated: 2024/12/31 14:36:29 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/01/05 14:50:08 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ typedef struct s_stack
 }	t_stack;
 
 void	stk_init(t_stack *stack);
+void	stk_swap(t_stack *stack);
+void	stk_rotate(t_stack *stack);
+void	stk_reverse_rotate(t_stack *stack);
 
 int		stk_pop(t_stack *stack);
 int		stk_peek(t_stack *stack);
 int		stk_get_size(t_stack *stack);
 int		stk_get_next(t_stack *stack);
 int		stk_get_bottom(t_stack *stack);
-
 
 bool	stk_exit(t_stack *stack);
 bool	stk_isempty(t_stack *stack);

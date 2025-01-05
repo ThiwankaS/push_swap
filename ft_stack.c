@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 08:53:33 by tsomacha          #+#    #+#             */
-/*   Updated: 2024/12/31 11:56:23 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/01/05 14:38:58 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	stk_push(t_stack *stack, int value)
 	node->data = value;
 	node->next = stack->top;
 	node->previous = NULL;
-	if (stack->top != NULL)
+	if (stack->top)
 	{
 		stack->top->previous = node;
 	}

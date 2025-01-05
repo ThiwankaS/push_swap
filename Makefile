@@ -51,6 +51,7 @@ SRC_PROGRM = \
 	ft_stack.c\
 	ft_helper.c\
 	ft_stk_man.c\
+	ft_stk_ops.c\
 	push_swap.c
 
 OBJ_LIBFTA = $(SRC_LIBFTA:.c=.o)

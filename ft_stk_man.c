@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 13:15:39 by tsomacha          #+#    #+#             */
-/*   Updated: 2024/12/31 14:42:36 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/01/05 14:49:41 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	stk_get_next(t_stack *stack)
 
 	node = stack->top;
 	node_next = node->next;
-	if(!node_next)
+	if (!node_next)
 		return (node->data);
 	return (node_next->data);
 }
