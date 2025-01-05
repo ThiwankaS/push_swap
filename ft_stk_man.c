@@ -19,6 +19,8 @@ bool	stk_contain_duplicates(t_stack *stack)
 	t_list	*start;
 	int		value;
 
+	if (!stack)
+		return (false);
 	node = stack->top;
 	while (node)
 	{
@@ -40,6 +42,8 @@ bool	stk_is_sorted(t_stack *stack, bool ascending)
 	t_list	*current_node;
 	t_list	*next_node;
 
+	if (!stack)
+		return (false);
 	current_node = stack->top;
 	next_node = current_node->next;
 	while (current_node && next_node)
@@ -62,6 +66,8 @@ bool	stk_is_sorted(t_stack *stack, bool ascending)
 
 bool	stk_exit(t_stack *stack)
 {
+	if (!stack)
+		return (false);
 	while (!stk_isempty(stack))
 		stk_pop(stack);
 	return (true);
@@ -73,6 +79,8 @@ int	stk_get_size(t_stack *stack)
 	t_list	*node;
 
 	count = 0;
+	if (!stack)
+		return (count);
 	node = stack->top;
 	while (node)
 	{
@@ -89,6 +97,8 @@ int	stk_get_bottom(t_stack *stack)
 	t_list	*node_next;
 
 	count = 0;
+	if (!stack)
+		return (-1);
 	node_next = stack->top;
 	while (node_next)
 	{
@@ -104,6 +114,8 @@ int	stk_get_next(t_stack *stack)
 	t_list	*node;
 	t_list	*node_next;
 
+	if(!stack)
+		return (-1);
 	node = stack->top;
 	node_next = node->next;
 	if (!node_next)
