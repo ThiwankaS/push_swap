@@ -43,34 +43,7 @@ int	main(int argc, char *argv[])
 	}
 	else
 		ft_printf("Error!\n");
-	if (!stk_isempty(&stack))
-	{
-		stk_print(&stack);
-		if (!stk_is_sorted(&stack, true))
-		{
-			ft_printf("stack ins not sorted!\n");
-		}
-		else
-		{
-			ft_printf("stack sorted!\n");
-		}
-		ft_printf("size : %d\n", stk_get_size(&stack));
-		ft_printf("top : %d\n", stk_peek(&stack));
-		ft_printf("bottom : %d\n", stk_get_bottom(&stack));
-		ft_printf("next : %d\n", stk_get_next(&stack));
-		stk_rotate(&stack);
-		stk_print(&stack);
-		ft_printf("size : %d\n", stk_get_size(&stack));
-		ft_printf("top : %d\n", stk_peek(&stack));
-		ft_printf("bottom : %d\n", stk_get_bottom(&stack));
-		ft_printf("next : %d\n", stk_get_next(&stack));
-		stk_reverse_rotate(&stack);
-		stk_print(&stack);
-		ft_printf("size : %d\n", stk_get_size(&stack));
-		ft_printf("top : %d\n", stk_peek(&stack));
-		ft_printf("bottom : %d\n", stk_get_bottom(&stack));
-		ft_printf("next : %d\n", stk_get_next(&stack));
-	}
+	sort(&stack);
 	while (!stk_isempty(&stack))
 		stk_pop(&stack);
 	return (0);

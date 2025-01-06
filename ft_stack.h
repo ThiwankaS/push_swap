@@ -34,6 +34,7 @@ typedef struct s_stack
 	t_list	*top;
 }	t_stack;
 
+void	sort(t_stack *stack);
 void	stk_init(t_stack *stack);
 void	stk_swap(t_stack *stack);
 void	stk_rotate(t_stack *stack);
