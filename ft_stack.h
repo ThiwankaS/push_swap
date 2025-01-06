@@ -34,11 +34,11 @@ typedef struct s_stack
 	t_list	*top;
 }	t_stack;
 
-void	sort(t_stack *stack);
 void	stk_init(t_stack *stack);
 void	stk_swap(t_stack *stack);
 void	stk_rotate(t_stack *stack);
 void	stk_reverse_rotate(t_stack *stack);
+void	sort(t_stack *stack_a, t_stack *stack_b);
 
 int		stk_pop(t_stack *stack);
 int		stk_peek(t_stack *stack);

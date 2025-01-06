@@ -30,21 +30,23 @@ void	stk_print(t_stack *stack)
 
 int	main(int argc, char *argv[])
 {
-	t_stack	stack;
+	t_stack	stack_a;
+	t_stack stack_b;
 
-	stk_init(&stack);
+	stk_init(&stack_a);
+	stk_init(&stack_b);
 	if (argc > 1)
 	{
-		if (!ft_handle_argument(argc, argv, &stack))
+		if (!ft_handle_argument(argc, argv, &stack_a))
 		{
 			ft_printf("Error!\n");
-			return (stk_exit(&stack));
+			return (stk_exit(&stack_a));
 		}
 	}
 	else
 		ft_printf("Error!\n");
-	sort(&stack);
-	while (!stk_isempty(&stack))
-		stk_pop(&stack);
+	sort(&stack_a, &stack_b);
+	while (!stk_isempty(&stack_a))
+		stk_pop(&stack_a);
 	return (0);
 }
