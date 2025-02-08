@@ -75,6 +75,7 @@ bool	ft_add_to_stack(char **arr, int count, t_stack *stack)
 	{
 		if (!ft_stk_push(stack, (int)data))
 		{
+			ft_stk_clear(stack);
 			ft_error();
 			return (false);
 		}
@@ -82,6 +83,7 @@ bool	ft_add_to_stack(char **arr, int count, t_stack *stack)
 	}
 	else
 	{
+		ft_stk_clear(stack);
 		ft_error();
 		return (false);
 	}

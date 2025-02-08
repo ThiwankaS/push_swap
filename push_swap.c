@@ -23,6 +23,7 @@ int	main(int argc, char *argv[])
 	{
 		if (!ft_handle_argument(argc, argv, &stack_a))
 		{
+			ft_stk_clear(&stack_a);
 			ft_error();
 			return (ft_stk_clear(&stack_a));
 		}

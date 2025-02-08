@@ -16,8 +16,6 @@ bool	ft_isvalid(char *str)
 {
 	int	count;
 
-	if (!ft_pre_valid(str))
-		return (false);
 	count = 0;
 	while (str[count] == ' ' || (str[count] >= 9 && str[count] <= 13))
 		count++;

@@ -79,8 +79,6 @@ bool	ft_exit(char **ptr);
 bool	ft_stk_clear(t_stack *stack);
 bool	ft_add_to_stack(char **arr, int count, t_stack *stack);
 
-int		ft_wordcount(char const *s, char c);
 char	**ft_get_numbers(char **argv, int *start);
-bool	ft_pre_valid(char *str);
 
 #endif

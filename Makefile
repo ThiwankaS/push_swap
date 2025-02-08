@@ -1,5 +1,5 @@
 CMD = cc
-CFLAGS = -Wall -Wextra -Werror -I. #-g -fsanitize=address,undefined
+CFLAGS = -Wall -Wextra -Werror -I. -g #-fsanitize=address,undefined
 
 TARGET_LIBFTA = libft.a
 TARGET_PRINTF = libftprintf.a
@@ -70,7 +70,7 @@ OBJ_LIBFTA = $(SRC_LIBFTA:.c=.o)
 OBJ_PRINTF = $(SRC_PRINTF:.c=.o)
 OBJ_PROGRM = $(SRC_PROGRM:.c=.o)
 
-HEADER = ft_printf.h libft.h ft_stack.hvoid	solution_quick_sort(t_stack *stack_a, t_stack *stack_b)
+HEADER = ft_printf.h libft.h ft_stack.h
 
 all : $(TARGET_LIBFTA) $(TARGET_PRINTF) $(TARGET_PROGRM)
 
