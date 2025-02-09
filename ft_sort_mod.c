@@ -222,6 +222,10 @@ void	ft_rotate_opt(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 				value_a = candidates_a[i];
 			}
 		}
+		else
+		{
+			min_count_a = size_b;
+		}
 		ft_printf("{%d} value {%d} count {%d} index {%d}\n", i, candidates_a[i], count_a, index_a);
 	}
 	ft_printf("candidates_b :\n");
