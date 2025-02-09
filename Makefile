@@ -65,6 +65,7 @@ SRC_PROGRM = \
 	ft_stk_ops.c\
 	ft_utils.c\
 	push_swap.c\
+	ft_sort_mod.c\
 
 OBJ_LIBFTA = $(SRC_LIBFTA:.c=.o)
 OBJ_PRINTF = $(SRC_PRINTF:.c=.o)

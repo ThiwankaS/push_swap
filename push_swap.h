@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 12:23:44 by tsomacha          #+#    #+#             */
-/*   Updated: 2024/12/03 14:16:28 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/09 09:54:09 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,8 @@ bool	ft_stk_clear(t_stack *stack);
 bool	ft_add_to_stack(char **arr, int count, t_stack *stack);
 
 char	**ft_get_numbers(char **argv, int *start);
+
+void	solution_moderate(t_stack *stack_a, t_stack *stack_b, int size);
+void	ft_move(t_stack *stack_a, t_stack *stack_b, t_list *guide);
 
 #endif

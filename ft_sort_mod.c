@@ -6,37 +6,61 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 12:23:44 by tsomacha          #+#    #+#             */
-/*   Updated: 2024/12/03 14:16:28 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:26:38 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void ft_printlst(t_list *list)
-// {
-// 	t_list *node = list;
-// 	ft_printf("list : \n----------------------------\n");
-// 	ft_printf("pos{%d} dat{%d} pre{%d} nex{%d}\n",node->position,node->data,node->prev->data,node->next->data);
-// 	node = node->next;
-// 	while(node != list)
-// 	{
-// 		ft_printf("pos{%d} dat{%d} pre{%d} nex{%d}\n",node->position,node->data,node->prev->data,node->next->data);
-// 		node = node->next;
-// 	}
-// 	ft_printf("\n----------------------------\n");
-// }
+void ft_printlst(t_list *list)
+{
+	t_list *node = list;
+	ft_printf("list : \n----------------------------\n");
+	ft_printf("pos{%d} dat{%d} pre{%d} nex{%d}\n",node->position,node->data,node->prev->data,node->next->data);
+	node = node->next;
+	while(node != list)
+	{
+		ft_printf("pos{%d} dat{%d} pre{%d} nex{%d}\n",node->position,node->data,node->prev->data,node->next->data);
+		node = node->next;
+	}
+	ft_printf("\n----------------------------\n");
+}
 
-// void ft_printstk(t_stack *stack)
-// {
-// 	t_list *node = stack->top;
-// 	ft_printf("Stack : \n----------------------------\n");
-// 	while(node)
-// 	{
-// 		ft_printf("data : {%d}\n",node->data);
-// 		node = node->next;
-// 	}
-// 	ft_printf("\n----------------------------\n");
-// }
+void ft_printstk(t_stack *stack)
+{
+	t_list *node = stack->top;
+	ft_printf("Stack : \n----------------------------\n");
+	while (node)
+	{
+		ft_printf("index : {%d} data : {%d}\n", node->position, node->data);
+		node = node->next;
+	}
+	ft_printf("\n----------------------------\n");
+}
+
+void	ft_stk_set_index_abs(t_stack *stack)
+{
+	int count = 0;
+	t_list *node = stack->top;
+	while (node)
+	{
+		node->position = count++;
+		node = node->next;
+	}
+}
+
+int ft_stk_get_index_abs(t_stack *stack, int value)
+{
+	t_list *node = stack->top;
+	ft_stk_set_index_abs(stack);
+	while (node)
+	{
+		if (node->data == value)
+			return (node->position);
+		node = node->next;
+	}
+	return (-1);
+}
 
 int	check_top(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 {
@@ -59,6 +83,8 @@ int	check_top(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 			return (rr(stack_a, stack_b) && pa(stack_a, stack_b));
 	else if(top_a->prev->data == bottom_b)
 			return (rrb(stack_b) && pa(stack_a, stack_b));
+	else if(top_a->next->data == bottom_b)
+			return (rrb(stack_b) && ra(stack_a) && pa(stack_a, stack_b));
 	return (0);
 }
 
@@ -67,14 +93,24 @@ int	check_next(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 	t_list	*next_a;
 	int	top_b;
 	int	next_b;
+	int	bottom_b;
 
 	next_a = ft_list_get_node(guide, ft_stk_get_next(stack_a));
 	top_b = ft_stk_peek(stack_b);
 	next_b = ft_stk_get_next(stack_b);
+	bottom_b = ft_stk_get_bottom(stack_b);
 	if (next_a->prev->data == top_b)
 		return (ra(stack_a) && pa(stack_a, stack_b));
 	else if (next_a->prev->data == next_b)
 			return (rr(stack_a, stack_b) && pa(stack_a, stack_b));
+	else if(next_a->next->data == top_b)
+		return(ra(stack_a) && ra(stack_a) && pa(stack_a, stack_b));
+	else if (next_a->next->data == next_b)
+		return (rr(stack_a, stack_b) && ra(stack_a) && pa(stack_a, stack_b));
+	else if (next_a->prev->data == bottom_b)
+			return (rrb(stack_b) && pa(stack_a, stack_b) && sa(stack_a));
+	else if (next_a->next->data == bottom_b)
+			return (rrb(stack_b) && ra(stack_a) && ra(stack_a) && pa(stack_a, stack_b));
 	return (0);
 }
 
@@ -89,86 +125,206 @@ int	check_bottom(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 	top_b = ft_stk_peek(stack_b);
 	next_b = ft_stk_get_next(stack_b);
 	bottom_b = ft_stk_get_bottom(stack_b);
-	if (bottom_a->prev->data == top_b)
-		return (rra(stack_a) && pa(stack_a, stack_b));
-	else if (bottom_a->next->data == top_b)
+	if (bottom_a->next->data == top_b)
 			return (pa(stack_a, stack_b));
+	else if (bottom_a->prev->data == top_b)
+		return (rra(stack_a) && pa(stack_a, stack_b));
 	else if (bottom_a->next->data == next_b)
 			return (rb(stack_b) && pa(stack_a, stack_b));
 	else if (bottom_a->prev->data == bottom_b)
 			return (rrr(stack_a, stack_b) && pa(stack_a, stack_b));
 	else if (bottom_a->next->data == bottom_b)
 			return (rrb(stack_b) && pa(stack_a, stack_b));
+	else if (bottom_a->prev->data == next_b)
+			return (rb(stack_b) && rra(stack_a) && pa(stack_a, stack_b));
 	return (0);
 }
 
-void	ft_stk_set_index_abs(t_stack *stack)
+void	ft_make_head_up(t_stack *stack_a, t_list *guide)
 {
-	int count = 0;
-	t_list *node = stack->top;
-	while(node)
+	int min = ft_list_get_value(guide, 0);
+	int index = ft_stk_get_index_abs(stack_a, min);
+	int size = ft_stk_get_size(stack_a);
+	int max_iter = size;
+
+	if (index < (size / 2))
 	{
-		node->position = count;
-		count++;
-		node = node->next;
+		while (stack_a->top->data != min && max_iter--)
+			ra(stack_a);
+	}
+	else
+	{
+		while (stack_a->top->data != min && max_iter--)
+			rra(stack_a);
 	}
 }
 
-int ft_stk_get_index(t_stack *stack, int value)
+bool ft_is_exsit_abs(t_stack *stack, int value)
 {
 	t_list *node = stack->top;
 	while(node)
 	{
 		if(node->data == value)
-			return (node->position);
+			return (true);
 		node = node->next;
 	}
-	return (-1);
+	return (false);
 }
 
-void	ft_make_head_up(t_stack *stack_a, t_list *guide)
+void	ft_rotate_opt(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 {
-	int min = ft_list_get_value(guide,0);
-	int index = ft_stk_get_index(stack_a, min);
-	int size = ft_stk_get_size(stack_a);
-	if(index < (size/2))
+	int min_count_a = INT_MAX, min_index_a = INT_MAX, value_a = 0;
+	int size_b = ft_stk_get_size(stack_b);
+	int index_a, count_a;
+
+	int min_count_b = INT_MAX, min_index_b = INT_MAX, value_b = 0;
+	int size_a = ft_stk_get_size(stack_a);
+	int index_b, count_b;
+
+	int candidates_a[] =
 	{
-		while(stack_a->top->data != min)
-			ra(stack_a);
+		ft_list_get_node(guide, ft_stk_peek(stack_a))->prev->data,
+		ft_list_get_node(guide, ft_stk_peek(stack_a))->next->data,
+		ft_list_get_node(guide, ft_stk_get_next(stack_a))->prev->data,
+		ft_list_get_node(guide, ft_stk_get_next(stack_a))->next->data,
+		ft_list_get_node(guide, ft_stk_get_bottom(stack_a))->prev->data,
+		ft_list_get_node(guide, ft_stk_get_bottom(stack_a))->next->data
+	};
+
+	int candidates_b[] =
+	{
+		ft_list_get_node(guide, ft_stk_peek(stack_b))->prev->data,
+		ft_list_get_node(guide, ft_stk_peek(stack_b))->next->data,
+		ft_list_get_node(guide, ft_stk_get_next(stack_b))->prev->data,
+		ft_list_get_node(guide, ft_stk_get_next(stack_b))->next->data,
+		ft_list_get_node(guide, ft_stk_get_bottom(stack_b))->prev->data,
+		ft_list_get_node(guide, ft_stk_get_bottom(stack_b))->next->data
+	};
+	if(ft_stk_is_empty(stack_b))
+	{
+		ft_printf("stack b  has no values\n");
+		return ;
 	}
-	else
+	ft_printf("candidates_a :\n");
+	for (int i = 0; i < 6; i++)
 	{
-		while(stack_a->top->data != min)
-			rra(stack_a);
+		index_a = ft_stk_get_index_abs(stack_b, candidates_a[i]);
+		if (index_a >= 0)
+		{
+			if(index_a < size_b / 2)
+			 	count_a = index_a;
+			else
+				count_a = size_b - index_a;
+			if (count_a < min_count_a)
+			{
+				min_count_a = count_a;
+				min_index_a = index_a;
+				value_a = candidates_a[i];
+			}
+		}
+		ft_printf("{%d} value {%d} count {%d} index {%d}\n", i, candidates_a[i], count_a, index_a);
+	}
+	ft_printf("candidates_b :\n");
+	for (int i = 0; i < 6; i++)
+	{
+		index_b = ft_stk_get_index_abs(stack_a, candidates_b[i]);
+		if (index_b >= 0)
+		{
+			if(index_b < size_a / 2)
+			 	count_b = index_b;
+			else
+				count_b = size_a - index_b;
+			if (count_b < min_count_b)
+			{
+				min_count_b = count_b;
+				min_index_b = index_b;
+				value_b = candidates_b[i];
+			}
+		}
+		ft_printf("{%d} value {%d} count {%d} index {%d}\n", i, candidates_b[i], count_b, index_b);
+	}
+	if(ft_is_exsit_abs(stack_b, value_a) && min_count_a <= min_count_b && min_index_a != -1 && min_index_b != -1)
+	{
+	 	if (min_index_a < (size_b / 2))
+		{
+			while (stack_b->top->data != value_a)
+				rb(stack_b);
+		}
+		else
+		{
+			while (stack_b->top->data != value_a)
+				rrb(stack_b);
+		}
+	}
+	else if(ft_is_exsit_abs(stack_a, value_b) && min_count_a > min_count_b && min_index_a != -1 && min_index_b != -1)
+	{
+	 	if (min_index_b < (size_a / 2))
+		{
+			while (stack_a->top->data != value_b)
+				ra(stack_a);
+		}
+		else
+		{
+			while (stack_a->top->data != value_b)
+				rra(stack_a);
+		}
+	}
+	ft_printf("min count a : %d\n", min_count_a);
+	ft_printf("min count b : %d\n", min_count_b);
+	ft_printf("index a : %d\n", index_a);
+	ft_printf("index b : %d\n", index_b);
+	ft_printf("value a: %d\n", value_a);
+	ft_printf("value b: %d\n", value_b);
+	ft_printstk(stack_a);
+	ft_printstk(stack_b);
+	ft_printf("##############################################################3\n");
+}
+
+void	ft_pass(t_stack *stack_a, t_list *guide)
+{
+	t_list *top_a = ft_list_get_node(guide, ft_stk_peek(stack_a));
+	t_list *bottom_a = ft_list_get_node(guide, ft_stk_get_bottom(stack_a));
+
+	if(top_a->prev->data == bottom_a->data)
+	{
+		ra(stack_a);
 	}
 }
 
 void	ft_move(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 {
-	while(!ft_stk_is_empty(stack_b))
+	int count = 0;
+	while (!ft_stk_is_empty(stack_b))
 	{
+		ft_printf("iteration {%d}\n---------------------------------------\n", count);
+		ft_pass(stack_a, guide);
+		ft_pass(stack_b, guide);
+		ft_printf("ft_pass completed---------------------------------------\n");
 		check_top(stack_a, stack_b, guide);
-		check_next(stack_a, stack_b, guide);
+		ft_printf("check_top completed---------------------------------------\n");
 		check_bottom(stack_a, stack_b, guide);
-		rrb(stack_b);
-		rrb(stack_b);
+		ft_printf("check_bottom completed---------------------------------------\n");
+		check_next(stack_a, stack_b, guide);
+		ft_printf("check_next completed---------------------------------------\n");
+		ft_rotate_opt(stack_a, stack_b, guide);
+		ft_printf("ft_rotate_opt completed---------------------------------------\n");
+		count++;
 	}
 }
 
 void	solution_moderate(t_stack *stack_a, t_stack *stack_b, int size)
 {
 	t_list *guide = ft_list_get_list(stack_a);
-	int pivot = ft_list_get_value(guide, (size/2) - 1);
-	while(size > 3)
+
+	while (size > 3)
 	{
 		pb(stack_b, stack_a);
-		if(stack_b->top->data < pivot)
-			rb(stack_b);
 		size--;
 	}
 	solution_three(stack_a);
+	ft_printstk(stack_a);
+	ft_printstk(stack_b);
 	ft_move(stack_a, stack_b, guide);
 	ft_make_head_up(stack_a, guide);
 	ft_list_clear(guide);
 }
-

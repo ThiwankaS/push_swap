@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 12:23:44 by tsomacha          #+#    #+#             */
-/*   Updated: 2024/12/03 14:16:28 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/09 12:36:15 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	sort_stack(t_stack *stack_a, t_stack *stack_b)
 		solution_four(stack_a, stack_b, size);
 	if (size == 5)
 		solution_five(stack_a, stack_b, size);
-	if (size > 5)
+	if (size > 5 && size <= 100)
+		solution_moderate(stack_a, stack_b, size);
+	if (size > 100)
 		solution_complex(stack_a, stack_b, size);
 }
