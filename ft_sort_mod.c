@@ -101,10 +101,10 @@ int	check_next(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 	bottom_b = ft_stk_get_bottom(stack_b);
 	if (next_a->prev->data == top_b)
 		return (ra(stack_a) && pa(stack_a, stack_b));
-	else if (next_a->prev->data == next_b)
-			return (rr(stack_a, stack_b) && pa(stack_a, stack_b));
 	else if(next_a->next->data == top_b)
 		return(ra(stack_a) && ra(stack_a) && pa(stack_a, stack_b));
+	else if (next_a->prev->data == next_b)
+			return (rr(stack_a, stack_b) && pa(stack_a, stack_b));
 	else if (next_a->next->data == next_b)
 		return (rr(stack_a, stack_b) && ra(stack_a) && pa(stack_a, stack_b));
 	else if (next_a->prev->data == bottom_b)
@@ -125,18 +125,19 @@ int	check_bottom(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 	top_b = ft_stk_peek(stack_b);
 	next_b = ft_stk_get_next(stack_b);
 	bottom_b = ft_stk_get_bottom(stack_b);
-	if (bottom_a->next->data == top_b)
-			return (pa(stack_a, stack_b));
-	else if (bottom_a->prev->data == top_b)
+	if (bottom_a->prev->data == top_b)
 		return (rra(stack_a) && pa(stack_a, stack_b));
+	else if (bottom_a->next->data == top_b)
+			return (pa(stack_a, stack_b));
+	else if (bottom_a->prev->data == next_b)
+			return (rb(stack_b) && rra(stack_a) && pa(stack_a, stack_b));
 	else if (bottom_a->next->data == next_b)
 			return (rb(stack_b) && pa(stack_a, stack_b));
 	else if (bottom_a->prev->data == bottom_b)
 			return (rrr(stack_a, stack_b) && pa(stack_a, stack_b));
 	else if (bottom_a->next->data == bottom_b)
 			return (rrb(stack_b) && pa(stack_a, stack_b));
-	else if (bottom_a->prev->data == next_b)
-			return (rb(stack_b) && rra(stack_a) && pa(stack_a, stack_b));
+
 	return (0);
 }
 
@@ -173,13 +174,11 @@ bool ft_is_exsit_abs(t_stack *stack, int value)
 
 void	ft_rotate_opt(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 {
-	int min_count_a = INT_MAX, min_index_a = INT_MAX, value_a = 0;
-	int size_b = ft_stk_get_size(stack_b);
-	int index_a, count_a;
-
-	int min_count_b = INT_MAX, min_index_b = INT_MAX, value_b = 0;
-	int size_a = ft_stk_get_size(stack_a);
-	int index_b, count_b;
+	int min_count_a, min_index_a, value_a, size_b, index_a, count_a;
+	size_b = ft_stk_get_size(stack_b);
+	min_count_a = size_b;
+	min_index_a = size_b - 1;
+	value_a = 0;
 
 	int candidates_a[] =
 	{
@@ -191,21 +190,6 @@ void	ft_rotate_opt(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 		ft_list_get_node(guide, ft_stk_get_bottom(stack_a))->next->data
 	};
 
-	int candidates_b[] =
-	{
-		ft_list_get_node(guide, ft_stk_peek(stack_b))->prev->data,
-		ft_list_get_node(guide, ft_stk_peek(stack_b))->next->data,
-		ft_list_get_node(guide, ft_stk_get_next(stack_b))->prev->data,
-		ft_list_get_node(guide, ft_stk_get_next(stack_b))->next->data,
-		ft_list_get_node(guide, ft_stk_get_bottom(stack_b))->prev->data,
-		ft_list_get_node(guide, ft_stk_get_bottom(stack_b))->next->data
-	};
-	if(ft_stk_is_empty(stack_b))
-	{
-		ft_printf("stack b  has no values\n");
-		return ;
-	}
-	ft_printf("candidates_a :\n");
 	for (int i = 0; i < 6; i++)
 	{
 		index_a = ft_stk_get_index_abs(stack_b, candidates_a[i]);
@@ -222,34 +206,10 @@ void	ft_rotate_opt(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 				value_a = candidates_a[i];
 			}
 		}
-		else
-		{
-			min_count_a = size_b;
-		}
-		ft_printf("{%d} value {%d} count {%d} index {%d}\n", i, candidates_a[i], count_a, index_a);
 	}
-	ft_printf("candidates_b :\n");
-	for (int i = 0; i < 6; i++)
+	if(ft_is_exsit_abs(stack_b, value_a))
 	{
-		index_b = ft_stk_get_index_abs(stack_a, candidates_b[i]);
-		if (index_b >= 0)
-		{
-			if(index_b < size_a / 2)
-			 	count_b = index_b;
-			else
-				count_b = size_a - index_b;
-			if (count_b < min_count_b)
-			{
-				min_count_b = count_b;
-				min_index_b = index_b;
-				value_b = candidates_b[i];
-			}
-		}
-		ft_printf("{%d} value {%d} count {%d} index {%d}\n", i, candidates_b[i], count_b, index_b);
-	}
-	if(ft_is_exsit_abs(stack_b, value_a) && min_count_a <= min_count_b && min_index_a != -1 && min_index_b != -1)
-	{
-	 	if (min_index_a < (size_b / 2))
+		if (min_index_a < (size_b / 2))
 		{
 			while (stack_b->top->data != value_a)
 				rb(stack_b);
@@ -260,28 +220,6 @@ void	ft_rotate_opt(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 				rrb(stack_b);
 		}
 	}
-	else if(ft_is_exsit_abs(stack_a, value_b) && min_count_a > min_count_b && min_index_a != -1 && min_index_b != -1)
-	{
-	 	if (min_index_b < (size_a / 2))
-		{
-			while (stack_a->top->data != value_b)
-				ra(stack_a);
-		}
-		else
-		{
-			while (stack_a->top->data != value_b)
-				rra(stack_a);
-		}
-	}
-	ft_printf("min count a : %d\n", min_count_a);
-	ft_printf("min count b : %d\n", min_count_b);
-	ft_printf("index a : %d\n", index_a);
-	ft_printf("index b : %d\n", index_b);
-	ft_printf("value a: %d\n", value_a);
-	ft_printf("value b: %d\n", value_b);
-	ft_printstk(stack_a);
-	ft_printstk(stack_b);
-	ft_printf("##############################################################3\n");
 }
 
 void	ft_pass(t_stack *stack_a, t_list *guide)
@@ -297,22 +235,13 @@ void	ft_pass(t_stack *stack_a, t_list *guide)
 
 void	ft_move(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 {
-	int count = 0;
 	while (!ft_stk_is_empty(stack_b))
 	{
-		ft_printf("iteration {%d}\n---------------------------------------\n", count);
 		ft_pass(stack_a, guide);
-		ft_pass(stack_b, guide);
-		ft_printf("ft_pass completed---------------------------------------\n");
 		check_top(stack_a, stack_b, guide);
-		ft_printf("check_top completed---------------------------------------\n");
 		check_bottom(stack_a, stack_b, guide);
-		ft_printf("check_bottom completed---------------------------------------\n");
 		check_next(stack_a, stack_b, guide);
-		ft_printf("check_next completed---------------------------------------\n");
 		ft_rotate_opt(stack_a, stack_b, guide);
-		ft_printf("ft_rotate_opt completed---------------------------------------\n");
-		count++;
 	}
 }
 
@@ -326,8 +255,6 @@ void	solution_moderate(t_stack *stack_a, t_stack *stack_b, int size)
 		size--;
 	}
 	solution_three(stack_a);
-	ft_printstk(stack_a);
-	ft_printstk(stack_b);
 	ft_move(stack_a, stack_b, guide);
 	ft_make_head_up(stack_a, guide);
 	ft_list_clear(guide);
