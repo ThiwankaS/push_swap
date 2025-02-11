@@ -6,13 +6,13 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 12:23:44 by tsomacha          #+#    #+#             */
-/*   Updated: 2024/12/03 14:16:28 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:51:40 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_with_top_b(t_list *top_a, t_list *bottom_a, int top_b)
+static int	check_top_b(t_list *top_a, t_list *bottom_a, int top_b)
 {
 	if (top_a->prev->data == top_b)
 		return (1);
@@ -33,7 +33,7 @@ int	one_step(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 	bottom_a = ft_list_get_node(guide, ft_stk_get_bottom(stack_a));
 	top_b = ft_stk_peek(stack_b);
 	bottom_b = ft_stk_get_bottom(stack_b);
-	if (check_with_top_b(top_a, bottom_a, top_b))
+	if (check_top_b(top_a, bottom_a, top_b))
 	{
 		pa(stack_a, stack_b);
 		return (1);

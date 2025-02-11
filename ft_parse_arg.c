@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 12:23:44 by tsomacha          #+#    #+#             */
-/*   Updated: 2024/12/03 14:16:28 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:01:55 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ bool	ft_push_to_stack(char **arr, int argc, int count, t_stack *stack)
 		while (count >= 0)
 		{
 			if (!ft_add_to_stack(arr, count, stack))
-				return (ft_exit(arr));
+			{
+				ft_stk_clear(stack);
+				ft_exit(arr);
+				return (false);
+			}
 			free(arr[count]);
 			count--;
 		}

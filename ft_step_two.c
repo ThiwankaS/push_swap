@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	check_top_a(t_stack *stack_a, t_stack *stack_b, t_list *guide)
+static int	check_top_a(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 {
 	int		top_b;
 	int		next_b;
@@ -34,7 +34,7 @@ int	check_top_a(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 	return (0);
 }
 
-int	check_bottom_a(t_stack *stack_a, t_stack *stack_b, t_list *guide)
+static int	check_bottom_a(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 {
 	int		top_b;
 	int		next_b;
@@ -56,7 +56,7 @@ int	check_bottom_a(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 	return (0);
 }
 
-int	check_next_a(t_stack *stack_a, t_stack *stack_b, t_list *guide)
+static int	check_next_a(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 {
 	int		top_b;
 	int		next_b;
