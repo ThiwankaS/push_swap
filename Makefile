@@ -55,17 +55,24 @@ SRC_PROGRM = \
 	ft_guide_list_helper.c\
 	ft_guide_list.c\
 	ft_list.c\
+	ft_mod_util.c\
+	ft_opt_rotate.c\
 	ft_parse_arg.c\
 	ft_parse_help.c\
 	ft_sort_comp.c\
 	ft_sort_easy.c\
 	ft_sort_help.c\
+	ft_sort_mod.c\
 	ft_sort.c\
 	ft_stack.c\
+	ft_step_four.c\
+	ft_step_one.c\
+	ft_step_two.c\
+	ft_step_three.c\
 	ft_stk_ops.c\
 	ft_utils.c\
 	push_swap.c\
-	ft_sort_mod.c\
+
 
 OBJ_LIBFTA = $(SRC_LIBFTA:.c=.o)
 OBJ_PRINTF = $(SRC_PRINTF:.c=.o)

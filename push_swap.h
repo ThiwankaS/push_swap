@@ -65,7 +65,7 @@ void	ft_stk_set_index(t_stack *stack, t_list *guide);
 int		ft_stk_get_next(t_stack *stack);
 int		ft_stk_get_size(t_stack *stack);
 int		ft_stk_get_bottom(t_stack *stack);
-bool	ft_is_exist(t_stack *stack, int value);
+bool	ft_is_exist_sml(t_stack *stack, int value);
 
 void	sort_stack(t_stack *stack_a, t_stack *stack_b);
 
@@ -83,5 +83,18 @@ char	**ft_get_numbers(char **argv, int *start);
 
 void	solution_moderate(t_stack *stack_a, t_stack *stack_b, int size);
 void	ft_move(t_stack *stack_a, t_stack *stack_b, t_list *guide);
+void	ft_pass(t_stack *stack_a, t_list *guide);
+void	ft_make_head_up(t_stack *stack_a, t_list *guide);
+
+int		one_step(t_stack *stack_a, t_stack *stack_b, t_list *guide);
+int		two_step(t_stack *stack_a, t_stack *stack_b, t_list *guide);
+int		three_step(t_stack *stack_a, t_stack *stack_b, t_list *guide);
+int		four_step(t_stack *stack_a, t_stack *stack_b, t_list *guide);
+
+void	ft_rotate_opt(t_stack *stack_a, t_stack *stack_b, t_list *guide);
+
+bool	ft_is_exsit_eql(t_stack *stack, int value);
+int		ft_stk_get_index_abs(t_stack *stack, int value);
+void	ft_stk_set_index_abs(t_stack *stack);
 
 #endif

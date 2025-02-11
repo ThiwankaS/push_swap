@@ -38,7 +38,7 @@ void	solution_four(t_stack *stack_a, t_stack *stack_b, int size)
 
 	list = ft_list_get_list(stack_a);
 	pivot = ft_list_get_value(list, size - 3 - 1);
-	while (size > 0 && ft_is_exist(stack_a, pivot))
+	while (size > 0 && ft_is_exist_sml(stack_a, pivot))
 	{
 		if (ft_stk_peek(stack_a) == pivot)
 			pb(stack_b, stack_a);
@@ -58,7 +58,7 @@ void	solution_five(t_stack *stack_a, t_stack *stack_b, int size)
 
 	list = ft_list_get_list(stack_a);
 	pivot = ft_list_get_value(list, size - 3 -1);
-	while (size > 0 && ft_is_exist(stack_a, pivot))
+	while (size > 0 && ft_is_exist_sml(stack_a, pivot))
 	{
 		if (ft_stk_peek(stack_a) <= pivot)
 			pb(stack_b, stack_a);
