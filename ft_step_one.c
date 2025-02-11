@@ -12,6 +12,16 @@
 
 #include "push_swap.h"
 
+int	check_with_top_b(t_list *top_a, t_list *bottom_a, int top_b)
+{
+	if (top_a->prev->data == top_b)
+		return (1);
+	else if (bottom_a->next->data == top_b)
+		return (1);
+	else
+		return (0);
+}
+
 int	one_step(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 {
 	t_list	*top_a;
@@ -23,12 +33,7 @@ int	one_step(t_stack *stack_a, t_stack *stack_b, t_list *guide)
 	bottom_a = ft_list_get_node(guide, ft_stk_get_bottom(stack_a));
 	top_b = ft_stk_peek(stack_b);
 	bottom_b = ft_stk_get_bottom(stack_b);
-	if (top_a->prev->data == top_b)
-	{
-		pa(stack_a, stack_b);
-		return (1);
-	}
-	else if (bottom_a->next->data == top_b)
+	if (check_with_top_b(top_a, bottom_a, top_b))
 	{
 		pa(stack_a, stack_b);
 		return (1);
