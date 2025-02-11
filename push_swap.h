@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 12:23:44 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/09 09:54:09 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:03:48 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**ft_parse_argument(char **argv, int argc, int *start);
 bool	ft_isvalid(char *str);
 bool	stk_contain_duplicates(t_stack *stack);
 bool	ft_handle_argument(int argc, char **argv, t_stack *stack);
-bool	ft_push_to_stack(char **arr, int argc, int count, t_stack *stack);
+bool	ft_push_to_stack(char **arr, int argc, int *start, t_stack *stack);
 
 void	solution_complex(t_stack *stack_a, t_stack *stack_b, int size);
 int		ft_bit_size(int value);

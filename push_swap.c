@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 12:23:44 by tsomacha          #+#    #+#             */
-/*   Updated: 2024/12/03 14:16:28 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:16:50 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 		{
 			ft_stk_clear(&stack_a);
 			ft_error();
-			return (ft_stk_clear(&stack_a));
+			return (0);
 		}
 	}
 	sort_stack(&stack_a, &stack_b);

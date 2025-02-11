@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 12:23:44 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/11 11:01:55 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:40:07 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,28 @@ char	**ft_parse_argument(char **argv, int argc, int *start)
 	return (result);
 }
 
-bool	ft_push_to_stack(char **arr, int argc, int count, t_stack *stack)
+bool	ft_push_to_stack(char **arr, int argc, int *start, t_stack *stack)
 {
 	if (argc == 2)
 	{
-		while (count >= 0)
+		while (--(*start) >= 0)
 		{
-			if (!ft_add_to_stack(arr, count, stack))
+			if (!ft_add_to_stack(arr, *start, stack))
 			{
-				ft_stk_clear(stack);
-				ft_exit(arr);
+				free(arr[*start]);
 				return (false);
 			}
-			free(arr[count]);
-			count--;
+			else
+				free(arr[*start]);
 		}
 		return (true);
 	}
 	else
 	{
-		while (count > 0)
+		while (--(*start) > 0)
 		{
-			if (!ft_add_to_stack(arr, count, stack))
+			if (!ft_add_to_stack(arr, *start, stack))
 				return (false);
-			count--;
 		}
 		return (true);
 	}
@@ -92,8 +90,16 @@ bool	ft_handle_argument(int argc, char **argv, t_stack *stack)
 	result = ft_parse_argument(argv, argc, &size);
 	if (!result)
 		return (false);
-	if (!ft_push_to_stack(result, argc, (size - 1), stack))
+	if (!ft_push_to_stack(result, argc, &size, stack))
+	{
+		if (argc == 2)
+		{
+			while (size--)
+				free(result[size]);
+			free(result);
+		}
 		return (false);
+	}
 	if (argc == 2)
 		free(result);
 	if (stk_contain_duplicates(stack))
