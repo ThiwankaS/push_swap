@@ -12,15 +12,6 @@
 
 #include "push_swap.h"
 
-typedef struct s_info
-{
-	int	min_count;
-	int	min_index;
-	int	index;
-	int	size;
-	int	count;
-}	t_info;
-
 static int	get_best_index(t_stack *stack_b, int *arr)
 {
 	t_info	info;

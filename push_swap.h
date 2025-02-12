@@ -20,6 +20,15 @@
 # include "ft_printf.h"
 # include "libft.h"
 
+typedef struct s_info
+{
+	int	min_count;
+	int	min_index;
+	int	index;
+	int	size;
+	int	count;
+}	t_info;
+
 int		sa(t_stack *stack_a);
 int		ra(t_stack *stack_a);
 int		rra(t_stack *stack_a);
